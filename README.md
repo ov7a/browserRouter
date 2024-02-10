@@ -23,8 +23,16 @@ For Linux:
    ```sh
    ./install_linux.sh
    ```
+3. (Optional) Click a link with schema to register schema in the browser.
+   Since GH markdown does not support custom links, copy-paste this to address bar:
+   ```
+   data:text/html,%3Ca href="brouter%3Aexample.com"%3EExample%20Link%20brouter:example.com%3C/a%3E
+   ```
+   and click the link on the page.
+   This might be useful combined with an extension that transforms all links.
 
 For Mac:
 
 While it works from CLI, Apple passes URLs via AppleEvents.
 So this app can't be used as a default browser (yet).   
+

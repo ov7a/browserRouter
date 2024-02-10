@@ -27,6 +27,14 @@ fn configPath(allocator: std.mem.Allocator) !String {
     return try std.fs.path.join(allocator, &paths);
 }
 
+fn extractLink(link: String) String {
+	if (std.mem.eql(u8, link[0..8],"brouter:")){
+		return link[8..];
+	} else {
+		return link;
+	}
+}
+
 pub fn main() !void {
 	var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
 	defer arena.deinit();
@@ -37,7 +45,8 @@ pub fn main() !void {
 	
 	_ = args.next(); // args[0], ignore
 	
-	if (args.next()) |link| {
+	if (args.next()) |raw_link| {
+		const link = extractLink(raw_link);
         const config_path = configPath(allocator) catch |err| {
 			std.debug.print("Can't get config path: {}\n", .{err});
 			std.os.exit(1);

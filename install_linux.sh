@@ -32,11 +32,14 @@ X-MultipleArgs=false
 Type=Application
 Categories=Network;WebBrowser;
 StartupNotify=false
-MimeType=x-scheme-handler/http;x-scheme-handler/https;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/brouter;
 
 EOF
 
 xdg-mime default "$menu" "x-scheme-handler/http"
 xdg-mime default "$menu" "x-scheme-handler/https"
+xdg-mime default "$menu" "x-scheme-handler/brouter"
 sudo -u "$real_user" xdg-settings set default-web-browser "$menu"
+update-desktop-database
+
 
